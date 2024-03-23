@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "gRPC.ProductService.Protos";
+import "google/protobuf/wrappers.proto";
+service ProductStore {
+
+  rpc GetProducts (Empty) returns ( PrdouctsResponse);
+  rpc AddProducts (ProductMessage) returns ( ProductMessage);
+  rpc UpdateProducts (ProductMessage) returns ( ProductMessage);
+  rpc DeleteProducts (DeleteRequest) returns ( ProductMessage);
+}
+
+message Empty {
+
+}
+message DeleteRequest{
+    string id = 1;
+}
+message PrdouctsResponse{
+	repeated ProductMessage products = 1;
+}
+message ProductMessage {
+    google.protobuf.StringValue  id = 1;
+    google.protobuf.StringValue name =2;
+    google.protobuf.StringValue category = 3;
+    google.protobuf.StringValue summary = 4;
+    google.protobuf.StringValue description = 5;
+    google.protobuf.StringValue imageFile = 6;
+    google.protobuf.DoubleValue price = 7;
+}
